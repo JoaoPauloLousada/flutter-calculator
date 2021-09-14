@@ -6,13 +6,12 @@ class Visor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey,
       padding: const EdgeInsets.all(10),
       child: Align(
         alignment: Alignment.bottomRight,
         child: Text(
           '0',
-          style: TextStyle(fontSize: 56),
+          style: TextStyle(fontSize: 72),
         ),
       ),
     );
