@@ -5,11 +5,15 @@ import 'package:flutter/material.dart';
 class CalcButtons extends StatelessWidget {
   final Function numericAction;
   final Function operationAction;
+  final Function resolveAction;
+  final Function clearAction;
 
   const CalcButtons({
     Key? key,
     required this.numericAction,
     required this.operationAction,
+    required this.resolveAction,
+    required this.clearAction,
   }) : super(key: key);
 
   @override
@@ -26,17 +30,18 @@ class CalcButtons extends StatelessWidget {
                   text: 'AC',
                   onPressed: () {
                     print('AC');
+                    this.clearAction();
                   },
                 ),
               ),
               Expanded(
                 child: CalcButton(
-                  text: '+/-',
+                  text: '',
                 ),
               ),
               Expanded(
                 child: CalcButton(
-                  text: '%',
+                  text: '',
                 ),
               ),
               Expanded(
@@ -60,7 +65,7 @@ class CalcButtons extends StatelessWidget {
                   text: '7',
                   color: Theme.of(context).buttonColor,
                   onPressed: () {
-                    this.numericAction('7');
+                    this.numericAction(CalcNumbers.SEVEN);
                   },
                 ),
               ),
@@ -69,7 +74,7 @@ class CalcButtons extends StatelessWidget {
                     text: '8',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('8');
+                      this.numericAction(CalcNumbers.EIGHT);
                     }),
               ),
               Expanded(
@@ -77,7 +82,7 @@ class CalcButtons extends StatelessWidget {
                     text: '9',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('9');
+                      this.numericAction(CalcNumbers.NINE);
                     }),
               ),
               Expanded(
@@ -101,7 +106,7 @@ class CalcButtons extends StatelessWidget {
                     text: '4',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('4');
+                      this.numericAction(CalcNumbers.FOUR);
                     }),
               ),
               Expanded(
@@ -109,7 +114,7 @@ class CalcButtons extends StatelessWidget {
                     text: '5',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('5');
+                      this.numericAction(CalcNumbers.FIVE);
                     }),
               ),
               Expanded(
@@ -117,7 +122,7 @@ class CalcButtons extends StatelessWidget {
                     text: '6',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('6');
+                      this.numericAction(CalcNumbers.SIX);
                     }),
               ),
               Expanded(
@@ -141,7 +146,7 @@ class CalcButtons extends StatelessWidget {
                     text: '1',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('1');
+                      this.numericAction(CalcNumbers.ONE);
                     }),
               ),
               Expanded(
@@ -149,7 +154,7 @@ class CalcButtons extends StatelessWidget {
                     text: '2',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('2');
+                      this.numericAction(CalcNumbers.TWO);
                     }),
               ),
               Expanded(
@@ -157,7 +162,7 @@ class CalcButtons extends StatelessWidget {
                     text: '3',
                     color: Theme.of(context).buttonColor,
                     onPressed: () {
-                      this.numericAction('3');
+                      this.numericAction(CalcNumbers.THREE);
                     }),
               ),
               Expanded(
@@ -184,7 +189,9 @@ class CalcButtons extends StatelessWidget {
                     horizontal: 10.0,
                   ),
                   child: ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () {
+                      this.numericAction(CalcNumbers.ZERO);
+                    },
                     child: Text('0'),
                     style: ElevatedButton.styleFrom(
                       textStyle: const TextStyle(
@@ -203,7 +210,7 @@ class CalcButtons extends StatelessWidget {
               ),
               Expanded(
                 child: CalcButton(
-                  text: '.',
+                  text: '',
                   color: Theme.of(context).buttonColor,
                 ),
               ),
@@ -211,6 +218,7 @@ class CalcButtons extends StatelessWidget {
                 child: CalcButton(
                   text: '=',
                   color: Colors.orange,
+                  onPressed: this.resolveAction,
                 ),
               ),
             ],

@@ -2,7 +2,7 @@ import 'package:calculator/models/calculator_model.dart';
 import 'package:flutter/material.dart';
 
 class Visor extends StatelessWidget {
-  final double currentValue;
+  final String currentValue;
   final Operation currentOperation;
 
   const Visor({

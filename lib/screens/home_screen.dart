@@ -1,5 +1,4 @@
 import 'package:calculator/models/calculator_model.dart';
-import 'package:calculator/widgets/button/calc_button.dart';
 import 'package:calculator/widgets/buttons/calc_buttons.dart';
 import 'package:calculator/widgets/visor/visor.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +21,30 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           children: <Widget>[
             Visor(
-              currentValue: _calc.currentValue,
+              currentValue: _calc.visorText,
               currentOperation: _calc.currentOperation,
             ),
             CalcButtons(
-              numericAction: _calc.registerValue,
-              operationAction: _calc.registerCurentOperation,
+              numericAction: (value) {
+                setState(() {
+                  _calc.registerValue(value);
+                });
+              },
+              operationAction: (value) {
+                setState(() {
+                  _calc.registerCurrentOperation(value);
+                });
+              },
+              resolveAction: () {
+                setState(() {
+                  _calc.resolve();
+                });
+              },
+              clearAction: () {
+                setState(() {
+                  _calc.clearAll();
+                });
+              },
             ),
           ],
         ),
